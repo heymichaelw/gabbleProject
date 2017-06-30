@@ -6,7 +6,7 @@ const path = require('path');
       session = require('express-session');
       postgres = require('pg');
       sequelize = require('sequelize');
-      routes = require('./routes/user.js');
+      routes = require('./routes/router.js');
       app = express();
 
 
