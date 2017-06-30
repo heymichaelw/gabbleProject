@@ -17,5 +17,27 @@ module.exports = {
         });
       }
     });
+  },
+  loginPage: function(req, res){
+    res.render('users/login', {});
+  },
+  login: function(req, res){
+    var name = req.body.name;
+    var password = req.body.password;
+    models.User.findOne({
+      where: {
+        name: name
+      }
+    }).then(function(user){
+      if (password === user.password) {
+        req.session.user = user;
+        req.session.name = user.name;
+        req.session.userId = user.id;
+        console.log('Welcome ' + req.session.name);
+        res.redirect('login');
+      } else {
+        res.redirect('signup');
+      }
+    });
   }
 };
