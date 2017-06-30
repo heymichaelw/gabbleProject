@@ -27,7 +27,7 @@ const models = require('./models');
         saveUninitialized: false
       }));
 
-      app.use('/public', express.static('static'));
+      app.use('/static', express.static(path.join(__dirname, 'public')));
       // app.use('/user', require('./routes/user'));
       // app.use('/gab', require('./routes/gab'));
 

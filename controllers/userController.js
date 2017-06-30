@@ -19,11 +19,16 @@ module.exports = {
     });
   },
   loginPage: function(req, res){
-    res.render('users/login', {});
+    var context = {
+      next : req.query.next
+    };
+    console.log(req.query.next);
+    res.render('users/login', context);
   },
   login: function(req, res){
     var name = req.body.name;
     var password = req.body.password;
+    var nextPage = req.body.next;
     models.User.findOne({
       where: {
         name: name
@@ -34,7 +39,7 @@ module.exports = {
         req.session.name = user.name;
         req.session.userId = user.id;
         console.log('Welcome ' + req.session.name);
-        res.redirect('login');
+        res.redirect(nextPage);
       } else {
         res.redirect('signup');
       }

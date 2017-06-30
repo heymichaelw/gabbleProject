@@ -6,6 +6,7 @@
   </head>
   <body>
     <form class="user-login" action="/user/login" method="post">
+      <input type="hidden" name="next" value="{{next}}">
       <label for="name">Name: </label>
       <input type="text" name="name" value="">
       <br>

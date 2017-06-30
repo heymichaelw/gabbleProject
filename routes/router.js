@@ -4,6 +4,7 @@ const sequelize = require('sequelize');
 const userController = require('../controllers/userController');
 const gabController = require('../controllers/gabController');
 const session = require('express-session');
+const helpers = require('../helpers.js')
 
 const router = express.Router();
 
@@ -16,5 +17,5 @@ module.exports = function(app){
 
 
 
-  app.get('/gab/create', gabController.createPage);
+  app.get('/gab/create', helpers.redirectMiddleware, gabController.createPage);
 };
