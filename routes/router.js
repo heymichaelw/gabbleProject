@@ -16,8 +16,12 @@ module.exports = function(app){
   app.get('/user/login', userController.loginPage);
   app.post('/user/login', userController.login);
 
-  app.get('/user/gabs', helpers.redirectMiddleware, userController.gabPage);
+  app.get('/user/gabs', helpers.redirectMiddleware, userController.myGabPage);
 
   app.get('/gab/create', helpers.redirectMiddleware, gabController.createPage);
   app.post('/gab/create', gabController.create);
+
+  app.get('/gab/list', gabController.list);
+
+  app.post('/gab/like', gabController.createLike);
 };

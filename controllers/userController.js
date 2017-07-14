@@ -45,14 +45,13 @@ module.exports = {
       }
     });
   },
-  gabPage: function(req, res){
-    var gabList = models.Gab.findAll({
+  myGabPage: function(req, res){
+    models.Gab.findAll({
       where: {
         user_id: req.session.userId
       }
     }).then(function(gabList){
-      console.log(gabList);
-      res.render('users/mygabs', gabList);
+      res.render('users/mygabs', { gabList: gabList });
     });
   }
 };

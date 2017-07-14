@@ -15,5 +15,23 @@ module.exports = {
       }
     });
     res.redirect('create');
+  },
+  list: function(req, res){
+    models.Gab.findAll({})
+    .then(function(gabList){
+      res.render('gabs/list', { gabList: gabList });
+    });
+  },
+  createLike: function(req, res){
+    req.getValidationResult().then(function(result){
+      if(result.isEmpty()){
+        models.Gab.find({
+          id: req.body.id
+        }).then(function(gab){
+          gab.addUserLikes(req.session.userId);
+          res.redirect('list');
+        });
+      }
+    });
   }
 };
