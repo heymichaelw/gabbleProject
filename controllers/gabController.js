@@ -25,13 +25,31 @@ module.exports = {
   createLike: function(req, res){
     req.getValidationResult().then(function(result){
       if(result.isEmpty()){
-        models.Gab.find({
-          id: req.body.id
+        models.Gab.findOne({
+          where: {
+            id: req.body.id
+          }
         }).then(function(gab){
           gab.addUserLikes(req.session.userId);
           res.redirect('list');
         });
       }
+    });
+  },
+  listLikes: function(req, res){
+    models.Gab.findOne({
+      where: {
+        id: req.body.id
+      }
+    }).then(function(gab){
+      gab.getUserLikes().then(function(likes){
+        likes.forEach(function(liker){
+          console.log("LIKER: " + liker.name);
+          if (req.session.userId === liker.id) {
+            console.log("YOU LIKED THIS!");
+          }
+        });
+      });
     });
   }
 };

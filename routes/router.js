@@ -23,5 +23,6 @@ module.exports = function(app){
 
   app.get('/gab/list', gabController.list);
 
+  app.post('/gab/likes', gabController.listLikes);
   app.post('/gab/like', gabController.createLike);
 };
