@@ -28,8 +28,6 @@ const models = require('./models');
       }));
 
       app.use('/static', express.static(path.join(__dirname, 'public')));
-      // app.use('/user', require('./routes/user'));
-      // app.use('/gab', require('./routes/gab'));
 
       routes(app);
 
