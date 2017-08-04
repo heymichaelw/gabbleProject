@@ -8,10 +8,9 @@
     {{#gabList}}
     {{text}} --  {{user_id}}
     <br>
-    <form class="" action="/gab/like" method="post">
-      <input type="hidden" name="id" value="{{id}}">
-      <input type="submit" name="" value="Like">
-    </form>
+    {{#showLikeIfNotOwner}}
+    {{loggedInUser}}
+    {{/showLikeIfNotOwner}}
     <form class="" action="/gab/likes" method="post">
       <input type="hidden" name="id" value="{{id}}">
       <input type="submit" name="" value="Get Likes">

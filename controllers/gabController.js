@@ -17,9 +17,19 @@ module.exports = {
     res.redirect('create');
   },
   list: function(req, res){
-    models.Gab.findAll({})
+    models.Gab.findAll({include: [{
+        model: models.User,
+        as: 'user'
+    }, 'UserLikes'],
+        order: [
+            ['createdAt', 'DESC']
+        ]})
     .then(function(gabList){
-      res.render('gabs/list', { gabList: gabList });
+      var context = {
+          gabList: gabList,
+          loggedInUser: req.session.userId
+      };
+      res.render('gabs/list', context);
     });
   },
   createLike: function(req, res){
