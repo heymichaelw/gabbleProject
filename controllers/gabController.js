@@ -3,7 +3,10 @@ const models = require('../models');
 
 module.exports = {
   createPage: function(req, res){
-    res.render('gabs/create', {});
+    var context = {
+      user: req.session.user
+    };
+    res.render('gabs/create', context);
   },
   create: function(req, res){
     req.getValidationResult().then(function(result){
@@ -14,8 +17,17 @@ module.exports = {
         });
       }
     });
-    res.redirect('create');
+    res.redirect('/user/gabs');
   },
+  delete: function(req, res){
+    models.Gab.destroy({
+        where: {
+          id : req.params.id
+        }
+    });
+    res.redirect('/user/gabs');
+  }
+  ,
   list: function(req, res){
     models.Gab.findAll({include: [{
         model: models.User,
@@ -27,7 +39,8 @@ module.exports = {
     .then(function(gabList){
       var context = {
           gabList: gabList,
-          loggedInUser: req.session.userId
+          loggedInUser: req.session.userId,
+          user: req.session.user
       };
       res.render('gabs/list', context);
     });
@@ -41,7 +54,7 @@ module.exports = {
           }
         }).then(function(gab){
           gab.addUserLikes(req.session.userId);
-          res.redirect('list');
+          res.redirect('/');
         });
       }
     });

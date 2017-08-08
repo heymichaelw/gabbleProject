@@ -5,11 +5,13 @@ module.exports = function(sequelize, DataTypes) {
     password: DataTypes.STRING(20)
   }, {});
   User.associate = function(models){
-    User.hasMany(models.Gab, {foreignKey: 'user_id'});
+    User.hasMany(models.Gab, {as: 'Gabs', foreignKey: 'user_id', onDelete: 'cascade', hooks: true});
     User.belongsToMany(models.Gab, {
       as: "GabLikes",
       through: "Likes",
-      foreignKey: "user_id"
+      foreignKey: "user_id",
+      onDelete: 'cascade',
+      hooks: true
     });
   };
   return User;

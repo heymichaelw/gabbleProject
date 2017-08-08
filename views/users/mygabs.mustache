@@ -7,6 +7,9 @@
   <body>
     {{#gabList}}
       {{text}}
+      <form action="/gab/delete/{{id}}" method="post">
+          <input type="submit" value="Delete">
+      </form>
       <br>
     {{/gabList}}
   </body>

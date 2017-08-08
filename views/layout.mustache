@@ -1,1 +1,28 @@
-{{yield}}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {{^title}}
+    <title>Gabble</title>
+    {{/title}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default container">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Gab List</a></li>
+        <li><a href="/gab/create">Create Gab</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {{#user}}
+        <li><a href="#">Logged in as {{user.name}}</a></li>
+        <li><a href="/user/logout">Log Out</a></li>
+        {{/user}}
+        {{^user}}
+        <li><a href="/user/login">Login</a></li>
+        {{/user}}
+      </ul>
+    </nav>
+    {{{yield}}}
+  </body>
+</html>

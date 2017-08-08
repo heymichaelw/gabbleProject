@@ -39,11 +39,17 @@ module.exports = {
         req.session.name = user.name;
         req.session.userId = user.id;
         console.log('Welcome ' + req.session.name);
-        res.redirect(nextPage);
+        res.redirect('gabs');
       } else {
         res.redirect('signup');
       }
     });
+  },
+  logout: function(req, res){
+    delete req.session.user;
+    delete req.session.name;
+    delete req.session.userId;
+    res.redirect('/');
   },
   myGabPage: function(req, res){
     models.Gab.findAll({
@@ -51,7 +57,11 @@ module.exports = {
         user_id: req.session.userId
       }
     }).then(function(gabList){
-      res.render('users/mygabs', { gabList: gabList });
+      var context = {
+        gabList: gabList,
+        user: req.session.user
+      };
+      res.render('users/mygabs', context);
     });
   }
 };
