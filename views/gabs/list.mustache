@@ -6,9 +6,9 @@
     {{#showLikeIfNotOwner}}
     {{loggedInUser}}
     {{/showLikeIfNotOwner}}
-    <form class="" action="/gab/likes" method="post">
+    <form class="" action="/gab/{{id}}" method="get">
       <input type="hidden" name="id" value="{{id}}">
-      <input type="submit" name="" value="Get Likes">
+      <input type="submit" name="" value="Details">
     </form>
     {{/gabList}}
   </section>

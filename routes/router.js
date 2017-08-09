@@ -23,6 +23,8 @@ module.exports = function(app){
   app.get('/gab/create', helpers.redirectMiddleware, gabController.createPage);
   app.post('/gab/create', gabController.create);
 
+  app.get('/gab/:id', gabController.details);
+
   app.post('/gab/delete/:id', gabController.delete);
 
   app.get('/', gabController.list);

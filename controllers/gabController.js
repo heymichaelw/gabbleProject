@@ -19,6 +19,23 @@ module.exports = {
     });
     res.redirect('/user/gabs');
   },
+  details: function(req, res){
+    models.Gab.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(gab){
+      gab.getUserLikes().then(function(likes){
+        var context = {
+          gab: gab,
+          likes: likes,
+          user: req.session.user,
+          loggedInUser: req.session.userId
+        };
+        res.render('gabs/details', context);
+      });
+    });
+  },
   delete: function(req, res){
     models.Gab.destroy({
         where: {
@@ -26,8 +43,7 @@ module.exports = {
         }
     });
     res.redirect('/user/gabs');
-  }
-  ,
+  },
   list: function(req, res){
     models.Gab.findAll({include: [{
         model: models.User,

@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
     Gab.prototype.showLikeIfNotOwner = function() {
         return function (val, render) {
             const id = render(val);
-            if (id != this.user_id) {
+            if (!isNaN(parseInt(id)) && id != this.user_id) {
                 // render the like button
                 return render(` <form class="" action="/gab/like" method="post">
           <input type="hidden" name="id" value="{{id}}" >
