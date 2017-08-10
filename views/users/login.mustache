@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>User Login</title>
-  </head>
-  <body>
-    <form class="user-login" action="/user/login" method="post">
-      <input type="hidden" name="next" value="{{next}}">
-      <label for="name">Name: </label>
-      <input type="text" name="name" value="">
-      <br>
 
-      <label for="password">Password: </label>
-      <input type="password" name="password" value="">
-      <br>
+<div class="container">
+  <form class="user-login" action="/user/login" method="post">
+    <input type="hidden" name="next" value="{{next}}">
+    <label for="name">Name: </label>
+    <input type="text" name="name" value="">
+    <br>
 
-      <input type="submit" name="" value="Login!">
-    </form>
-  </body>
-</html>
+    <label for="password">Password: </label>
+    <input type="password" name="password" value="">
+    <br>
+
+    <button type="submit" class="btn btn-success" name="">Login</button>
+  </form>
+</div>

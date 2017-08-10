@@ -16,7 +16,6 @@ const models = require('./models');
       app.set('views', path.join(__dirname, 'views'));
       app.set('view engine', 'mustache');
       app.set('layout', 'layout');
-      // app.set('layout', 'layout');
 
       app.use(bodyParser.urlencoded({ extended: false }));
       app.use(expressValidator({
